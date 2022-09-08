@@ -6,25 +6,25 @@ import {
   Poppins_500Medium,
   Poppins_700Bold,
 } from '@expo-google-fonts/poppins';
+import { Routes } from './src/routes/index';
 import { ThemeProvider } from 'styled-components';
-
 import theme from './src/global/styles';
-import { NavigationContainer } from '@react-navigation/native';
-import { AppRoutes } from './src/routes/app.routes';
+import { AuthProvider, useAuth } from './src/hooks/auth';
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,
     Poppins_700Bold,
   });
-  if (!fontsLoaded) return null;
+
+  const { userStorageLoading } = useAuth();
+  if (!fontsLoaded || userStorageLoading) return null;
 
   return (
     <ThemeProvider theme={theme}>
-      <NavigationContainer>
-        <StatusBar barStyle='light-content' />
-        <AppRoutes />
-      </NavigationContainer>
+      <StatusBar barStyle='light-content' />
+      <AuthProvider child={<Routes />} />
     </ThemeProvider>
   );
 }

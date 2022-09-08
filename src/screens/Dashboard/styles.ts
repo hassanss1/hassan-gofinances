@@ -101,3 +101,5 @@ export const LoadingContainer = styled.View`
   align-items: center;
   justify-content: center;
 `;
+
+export const IconWrapper = styled.TouchableOpacity``;

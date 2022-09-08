@@ -1,10 +1,10 @@
 {
   "expo": {
     "name": "hassan-gofinances",
-    "slug": "hassan-gofinances",
+    "slug": "gofinances",
+    "scheme": "gofinances",
+    "owner": "hassanss",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"]
   }
 }

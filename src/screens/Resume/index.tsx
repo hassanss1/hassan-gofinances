@@ -24,6 +24,7 @@ import {
 
 import { CategoryCard } from '../../components/CategoryCard';
 import { categories } from '../../utils/categories';
+import { useAuth } from '../../hooks/auth';
 
 export interface TransactionData {
   name: string;
@@ -44,6 +45,8 @@ export default function Resume() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedMonth, setSelectedMonth] = useState(new Date());
   const theme = useTheme();
+  const { user } = useAuth();
+
   const [totalByCategories, setTotalByCategories] = useState<CagetoryProps[]>(
     []
   );
@@ -68,7 +71,7 @@ export default function Resume() {
   }
   async function loadData() {
     // Loading previous data
-    const dataKey = '@gofinances:transactions';
+    const dataKey = `@gofinances:transactions_user:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const formattedResponse = response ? JSON.parse(response) : [];
 
